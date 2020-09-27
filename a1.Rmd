@@ -1,0 +1,62 @@
+---
+title: 'STA304 Assignment1: Street furniture-Bench'
+author: "Jingwen Mou"
+date: "2020/9/25"
+abstract: "The City of Toronto installed up to 25000 street furnitures since 2007, and in that amount there are about 2000 benches. These benches provides convenience in parks, along streets, on college campus, and so on. The program of 'Street furniture-Bench' is a public-private partnership wherein Astral Out-of-Home manufactures, owns, cleans, and repairs all of their street furniture within the City of Toronto."
+output:
+  html_document:
+    df_print: paged
+---
+
+
+
+
+## Introduction
+This r markdown file is for 2020 Fall STA304 assignement1. The data and observations are taken from a dataset "Street furniture-Bench data" from the website "Open data Toronto". This dataset includes the status of benches on the street within the city of Toronto.
+
+I take the two variables, X and Y, that represent each bench's coordinates, and generates a scatterplot according to these values. I set the colour to be blue and half transparent, so it's easier to observe the density of the arrangement of benches.
+
+The file contains the data and plots, the discussion, and the reference. The weakness is the amount of data is too large, and this file is not enough to represent all the details and all aspect of infomation.
+
+## Data and Plots
+
+The dataset "Street furniture-Bench data" includes the status of benches on the street within the city of Toronto. The data describes the benches by their specific locations and coordinates, sizes, id, barcodes, etc. This data frame contains 2089 observations and 21 variables.
+
+```{r, echo = FALSE, include = FALSE}
+setwd("/Users/apple/Desktop/u of t Fall term/STA304")
+bench <- read.csv("Street furniture-Bench data.csv")
+str(bench)
+library(ggplot2)
+```
+
+```{r, echo=FALSE}
+head(bench, 1)
+```
+Here is one row of the dataset, representing the information of one bench.
+
+```{r, echo=FALSE}
+coordinates <- ggplot(bench, aes(Y, X)) +
+  geom_point(color = "steelblue", alpha = 1/2) +
+  labs(x = "X-coordinates on map", 
+       y = "Y-coordinats on map",
+       title = "Specific Coordinates of Each Bench")
+print(coordinates)
+```
+
+This is the graph, showing the arrangement of all benches.
+
+## Discussion
+In this graph, each dot represents one bench. We can see that most benches are arranged in straight lines, which means they are set along streets. The transparency of the colour of dots helps to see how dense the dots are in each part. There are several areas with darker color, which means the density of benches in those areas are higher than the other. These areas could be parks, schools and markets. Oppositely, some areas have less benches, or even none, which could be residencial area or business circles where have large amount of buildings and trafic. 
+The area in between x interval (304975.149, 316239.305) and y interval (4832884.906,  4844905.242) have the most condensed arrangement of benches. 
+Most empty areas are in parallelogram shape due to the direction of streets and roads. 
+
+## Refenrence
+```{r, echo=FALSE, include=FALSE}
+citation("ggplot2")
+```
+
+- Tersigni Sandro, Sep 27 2020, 'Street furniture-Bench data',      https://open.toronto.ca/dataset/street-furniture-bench/,Transportation Services.
+- H. Wickham. ggplot2: Elegant Graphics for Data Analysis. Springer-Verlag
+  New York, 2016.
+
+
